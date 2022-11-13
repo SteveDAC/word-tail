@@ -1,5 +1,5 @@
 # WordTail. 
-A Wordle clone in React.
+A Wordle clone made with React, TailwindCSS and DaisyUI.
 
 <br/>
 <br/>

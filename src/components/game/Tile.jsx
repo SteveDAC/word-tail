@@ -27,8 +27,6 @@ function Tile({ letter, state }) {
       break
   }
 
-  console.log(color)
-
   return (
     <>
       {state === TileStates.None ? (

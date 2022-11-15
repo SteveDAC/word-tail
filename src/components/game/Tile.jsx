@@ -28,22 +28,11 @@ function Tile({ letter, state }) {
   }
 
   return (
-    <kbd className={`kbd ${color}`}>
-      <span className={`${color}`}>
+      
+      <div className={`kbd kbd-lg ${color} p-1`} style={{color: (state === TileStates.None) ? '' : 'white'}}>
         {letter !== '' ? letter : ' '}
-      </span>
-    </kbd>
-    // <>
-    //   {state === TileStates.None ? (
-    //     <kbd className={`kbd ${color}`}>
-    //       {letter !== '' ? letter : ' '}
-    //     </kbd>
-    //   ) : (
-    //     <kbd className={`kbd ${color}`}>
-    //       {letter !== '' ? letter : ' '}
-    //     </kbd>
-    //   )}
-    // </>
+      </div>
+
   )
 }
 

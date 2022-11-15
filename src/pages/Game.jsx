@@ -77,8 +77,9 @@ function Game() {
       if (word[i] === targetWord[i]) {
         availableLetters.splice(availableLetters.indexOf(word[i]), 1)
         newRow[i].state = TileStates.Correct
-        if (!currentCorrectLetters.includes(word[i]))
+        if (!currentCorrectLetters.includes(word[i])) {
           currentCorrectLetters.push(word[i])
+        }
       }
     }
 
@@ -87,10 +88,11 @@ function Game() {
       if (newRow[i].state === TileStates.Correct) continue
 
       if (availableLetters.includes(word[i])) {
-        availableLetters.splice(availableLetters.indexOf(word[i]))
+        availableLetters.splice(availableLetters.indexOf(word[i]), 1)
         newRow[i].state = TileStates.Misplaced
-        if (!currentMisplacedLetters.includes(word[i]))
+        if (!currentMisplacedLetters.includes(word[i])) {
           currentMisplacedLetters.push(word[i])
+        }
       }
     }
 
@@ -101,8 +103,9 @@ function Game() {
       
 
       newRow[i].state = TileStates.Incorrect
-      if (!currentIncorrectLetters.includes(word[i]))
+      if (!currentIncorrectLetters.includes(word[i])) {
         currentIncorrectLetters.push(word[i])
+      }
     }
 
     currentBoard[rowId] = newRow

@@ -59,6 +59,7 @@ export const GameProvider = ({ children }) => {
     targetWord: '',
     maxWordLength: 5,
     currentRow: 0,
+    errorMessage: null,
     board: initialBoard,
   }
   const [state, dispatch] = useReducer(gameReducer, initialState)

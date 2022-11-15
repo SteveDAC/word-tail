@@ -60,6 +60,12 @@ const gameReducer = (state, action) => {
         board: newBoard,
       }
 
+    case 'SET_ERROR_MESSAGE':
+      return {
+        ...state,
+        errorMessage: action.payload,
+      }
+    
     default:
       return state
   }

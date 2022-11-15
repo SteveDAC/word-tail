@@ -6,54 +6,60 @@ const GameContext = createContext()
 
 const defaultLetter = '\u00A0';
 
+export const initialBoard = [
+  [
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+  ],
+  [
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+  ],
+  [
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+  ],
+  [
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+  ],
+  [
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+  ],
+  [
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+    { state: TileStates.None, letter: defaultLetter },
+  ],
+]
+
 export const GameProvider = ({ children }) => {
   const initialState = {
-    gameOver: false,
-    targetWord: 'AUDIO',
-    board: [
-      [
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-      ],
-      [
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-      ],
-      [
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-      ],
-      [
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-      ],
-      [
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-      ],
-      [
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-        { state: TileStates.None, letter: defaultLetter },
-      ],
-    ],
+    targetWords: [],
+    allWords: [],
+    gameOver: true,
+    targetWord: '',
+    maxWordLength: 5,
+    currentRow: 0,
+    board: initialBoard,
   }
   const [state, dispatch] = useReducer(gameReducer, initialState)
 

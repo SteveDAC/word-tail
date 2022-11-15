@@ -3,6 +3,12 @@ module.exports = {
   content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
   theme: {
     extend: {},
+    colors: {
+      'tileStateCorrect': 'green',
+      'tileStateIncorrect': 'dimgray',
+      'tileStateMisplaced': 'goldenrod',
+      'tileStateNone': 'whitesmoke'
+    }
   },
   plugins: [require('daisyui')],
   daisyui: {

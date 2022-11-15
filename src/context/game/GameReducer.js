@@ -20,6 +20,7 @@ const gameReducer = (state, action) => {
         maxWordLength: 5,
         correctLetters: [],
         incorrectLetters: [],
+        misplacedLetters: [],
         gameOver: false,
         currentRow: 0,
         buffer: '',

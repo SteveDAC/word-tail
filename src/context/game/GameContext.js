@@ -62,7 +62,7 @@ export const GameProvider = ({ children }) => {
     errorMessage: null,
     correctLetters: [],
     incorrectLetters: [],
-    misplacedLetter: [],
+    misplacedLetters: [],
     buffer: '',
     board: initialBoard(),
   }

@@ -1,32 +1,33 @@
-import { useContext } from 'react'
-import GameContext from '../context/game/GameContext'
+// import { useContext } from 'react'
+// import GameContext from '../context/game/GameContext'
 import Board from '../components/game/Board'
-import Row from '../components/game/Row'
-import Tile from '../components/game/Tile'
-import { TileStates } from '../components/game/Tile'
+import Keyboard from '../components/keyboard/Keyboard'
 
 function Game() {
-  const { board, dispatch } = useContext(GameContext)
+  // const { gameOver } = useContext(GameContext)
 
-  let rowId = 0
-  let tileId = 0
+  // const testSettingLetter = (e) => {
+  //   let newBoard = board
+  //   newBoard[2][4] = {
+  //     state: TileStates.Incorrect,
+  //     letter: 'S',
+  //   }
 
-  const testSettingLetter = (e) => {
-    let newBoard = board
-    newBoard[2][4] = {
-      state: TileStates.Incorrect,
-      letter: 'S',
-    }
-
-    dispatch({
-      type: 'UPDATE_BOARD',
-      payload: newBoard,
-    })
-  }
+  //   dispatch({
+  //     type: 'UPDATE_BOARD',
+  //     payload: newBoard,
+  //   })
+  // }
 
   return (
-    <div className='container mx-auto my-10 h-full'>
-      <Board />
+    <div className='container align-bottom flex flex-col'>
+      <div className='container mx-auto my-10'>
+        <Board />
+      </div>
+
+      <div className='container mx-auto'>
+        <Keyboard />
+      </div>
     </div>
   )
 }

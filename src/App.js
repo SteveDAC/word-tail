@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Footer from './components/layout/Footer'
 import TopNav from './components/layout/TopNav'
 import Game from './pages/Game'
 import About from './pages/About'
@@ -17,7 +16,6 @@ function App() {
               <Route path='/about' element={<About />} />
             </Routes>
           </main>
-          <Footer />
         </div>
       </Router>
     </GameProvider>

@@ -6,7 +6,7 @@ const GameContext = createContext()
 
 const defaultLetter = '\u00A0';
 
-export const initialBoard = [
+export const initialBoard = () => [
   [
     { state: TileStates.None, letter: defaultLetter },
     { state: TileStates.None, letter: defaultLetter },
@@ -60,7 +60,11 @@ export const GameProvider = ({ children }) => {
     maxWordLength: 5,
     currentRow: 0,
     errorMessage: null,
-    board: initialBoard,
+    correctLetters: [],
+    incorrectLetters: [],
+    misplacedLetter: [],
+    buffer: '',
+    board: initialBoard(),
   }
   const [state, dispatch] = useReducer(gameReducer, initialState)
 

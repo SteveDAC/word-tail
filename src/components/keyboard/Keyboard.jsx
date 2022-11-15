@@ -1,15 +1,16 @@
-import { useState } from 'react'
 import PropTypes from 'prop-types'
+import { useContext } from 'react'
+import GameContext from '../../context/game/GameContext'
 import KeyboardButton from './KeyboardButton'
 
 function Keyboard({ maxWordLength, updateCallBack, submitCallBack }) {
   const keys = [
     ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
     ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
-    ['Enter|{ENTER}', 'Z', 'X', 'C', 'V', 'B', 'N', 'Delete|{DELETE}'],
+    ['Enter|{ENTER}', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'Delete|{DELETE}'],
   ]
 
-  const [buffer, setBuffer] = useState('')
+  const { buffer, dispatch } = useContext(GameContext)
 
   let rowId = 0
   let keyId = 0
@@ -24,15 +25,14 @@ function Keyboard({ maxWordLength, updateCallBack, submitCallBack }) {
       case '{DELETE}':
         if (buffer.length > 0) {
           currentBuffer = currentBuffer.substring(0, currentBuffer.length - 1)
-          setBuffer(currentBuffer)
-          // setBuffer(buffer.substring(0, buffer.length - 1))
+          dispatch({ type: 'SET_BUFFER', payload: currentBuffer })
         }
         break
 
       default:
         if (maxWordLength && currentBuffer.length >= maxWordLength) return
         currentBuffer += button
-        setBuffer(currentBuffer)
+        dispatch({ type: 'SET_BUFFER', payload: currentBuffer })
     }
 
     updateCallBack(currentBuffer)

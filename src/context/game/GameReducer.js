@@ -1,6 +1,6 @@
-import { initialBoard } from './GameContext'
 import { getRandomInt } from '../../tools'
 import { TileStates } from '../../components/game/Tile'
+import { initialBoard } from './GameContext'
 
 const gameReducer = (state, action) => {
   switch (action.type) {
@@ -13,13 +13,17 @@ const gameReducer = (state, action) => {
     case 'INIT_NEW_GAME':
       return {
         ...state,
-        board: initialBoard,
+        board: initialBoard(),
         allWords: [],
         targetWords: [],
         targetWord: '',
         maxWordLength: 5,
+        correctLetters: [],
+        incorrectLetters: [],
         gameOver: false,
         currentRow: 0,
+        buffer: '',
+        errorMessage: '',
       }
 
     case 'SET_WORDS':
@@ -54,16 +58,43 @@ const gameReducer = (state, action) => {
           }
         }
       }
-
+    
       return {
         ...state,
         board: newBoard,
+      }
+    
+    case 'SET_NEXT_ROW':
+      return {
+        ...state,
+        currentRow: action.payload,
+        buffer: '',
+      }
+    
+    case 'SET_BUFFER':
+      return {
+        ...state,
+        buffer: action.payload
+      }
+    
+    case 'SET_LETTERS':
+      return {
+        ...state,
+        correctLetters: action.payload.correctLetters,
+        incorrectLetters: action.payload.incorrectLetters,
+        misplacedLetters: action.payload.misplacedLetters,
       }
 
     case 'SET_ERROR_MESSAGE':
       return {
         ...state,
         errorMessage: action.payload,
+      }
+    
+    case 'SET_GAME_OVER':
+      return {
+        ...state,
+        gameOver: action.payload,
       }
     
     default:

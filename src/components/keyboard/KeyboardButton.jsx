@@ -32,7 +32,7 @@ function KeyboardButton({ button, onKeyPress }) {
 
   return (
     <button
-      className={`kbd btn ${color}`}
+      className={`kbd kbd-md btn ${color}`}
       onClick={onClick}
     >
       {buttonLabel}

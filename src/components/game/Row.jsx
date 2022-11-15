@@ -9,7 +9,7 @@ function Row({ rowId }) {
   let tileId = 0
 
   return (
-    <div className='mx-auto space-x-2'>
+    <div className='mx-auto space-x-2 m-1'>
       {board[rowId].map((tile) => (
         <Tile key={tileId++} state={tile.state} letter={tile.letter} />
       ))}

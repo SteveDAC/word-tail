@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import GameContext from '../context/game/GameContext'
 import Board from '../components/game/Board'
 import Keyboard from '../components/keyboard/Keyboard'
@@ -18,6 +18,8 @@ function Game() {
     incorrectLetters,
     targetWord,
   } = useContext(GameContext)
+
+  const [loading, setLoading] = useState(true)
 
   const initNewGame = () => {
     dispatch({ type: 'INIT_NEW_GAME' })
@@ -194,11 +196,10 @@ function Game() {
         dispatch({ type: 'SET_NEXT_ROW', payload: savedGameData.rowId })
         dispatch({ type: 'SET_GAME_OVER', payload: false })
       }
+      setLoading(false)
     }
 
     loadSavedGameData()
-
-    // eslint-disable-next-line
   }, [dispatch])
 
   return (
@@ -221,7 +222,7 @@ function Game() {
         </>
       )}
 
-      {gameOver && (
+      {gameOver && !loading && (
         <>
           <button
             className='btn-primary btn mx-auto my-auto text-3xl shadow-sm shadow-primary'

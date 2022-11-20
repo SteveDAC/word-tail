@@ -61,6 +61,7 @@ function Game() {
 
   const evaluateWord = (word) => {
     let rowId = currentRow
+    let tmpGameOver = false
     const currentBoard = board
 
     let newRow = []
@@ -114,12 +115,15 @@ function Game() {
     rowId++
 
     if (rowId > 5) {
-      dispatch({ type: 'SET_GAME_OVER', payload: true })
+      tmpGameOver = true
+      dispatch({ type: 'SET_GAME_OVER', payload: tmpGameOver })
       setErrorMessage(`Nope, the word was ${targetWord}!`)
     }
+
     if (word === targetWord) {
+      tmpGameOver = true
       localStorage.removeItem('SavedGameData')
-      dispatch({ type: 'SET_GAME_OVER', payload: true })
+      dispatch({ type: 'SET_GAME_OVER', payload: tmpGameOver })
       setErrorMessage('You win!')
     }
 
@@ -144,16 +148,19 @@ function Game() {
       },
     })
 
-    const saveData = {
-      currentBoard,
-      currentCorrectLetters,
-      currentIncorrectLetters,
-      currentMisplacedLetters,
-      targetWord,
-      rowId,
-    }
+    if (!tmpGameOver) {
+      const saveData = {
+        currentBoard,
+        currentCorrectLetters,
+        currentIncorrectLetters,
+        currentMisplacedLetters,
+        targetWord,
+        rowId,
+      }
 
-    localStorage.setItem('SavedGameData', JSON.stringify(saveData))
+      console.log('Saving data.', saveData)
+      localStorage.setItem('SavedGameData', JSON.stringify(saveData))
+    }
 
     dispatch({ type: 'SET_NEXT_ROW', payload: rowId })
   }

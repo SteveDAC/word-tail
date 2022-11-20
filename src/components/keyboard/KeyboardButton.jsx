@@ -18,23 +18,37 @@ function KeyboardButton({ button, onKeyPress }) {
   // console.log('incorrectLetters: ', incorrectLetters)
   // console.log('misplacedLetters: ', misplacedLetters)
 
-  let color = '';
+  let color = ''
   if (correctLetters.includes(buttonKey)) {
-    color = 'bg-tileStateCorrect text-white hover:bg-neutral hover:text-neutral-content'
+    color =
+      'bg-tileStateCorrect text-white hover:bg-tileStateCorrect hover:text-white'
   } else if (incorrectLetters.includes(buttonKey)) {
-    color = 'bg-tileStateIncorrect text-white hover:bg-neutral hover:text-neutral-content'
+    color =
+      'bg-tileStateIncorrect text-white hover:bg-tileStateIncorrect hover:text-white'
   } else if (misplacedLetters.includes(buttonKey)) {
-    color = 'bg-tileStateMisplaced text-white hover:bg-neutral hover:text-neutral-content'
+    color =
+      'bg-tileStateMisplaced text-white hover:bg-tileStateMisplaced hover:text-white'
   } else {
-    color = 'bg-base-100 text-base-content hover:bg-neutral hover:text-neutral-content'
+    color =
+      'bg-base-100 text-base-content hover:bg-base-100 hover:text-base-content'
   }
-
+  // let color = ''
+  // if (correctLetters.includes(buttonKey)) {
+  //   color =
+  //     'bg-tileStateCorrect text-white hover:bg-neutral hover:text-neutral-content'
+  // } else if (incorrectLetters.includes(buttonKey)) {
+  //   color =
+  //     'bg-tileStateIncorrect text-white hover:bg-neutral hover:text-neutral-content'
+  // } else if (misplacedLetters.includes(buttonKey)) {
+  //   color =
+  //     'bg-tileStateMisplaced text-white hover:bg-neutral hover:text-neutral-content'
+  // } else {
+  //   color =
+  //     'bg-base-100 text-base-content hover:bg-neutral hover:text-neutral-content'
+  // }
 
   return (
-    <button
-      className={`kbd btn ${color}`}
-      onClick={onClick}
-    >
+    <button className={`kbd btn ${color}`} onClick={onClick}>
       {buttonLabel}
     </button>
   )

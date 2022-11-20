@@ -39,19 +39,21 @@ function Keyboard({ maxWordLength, updateCallBack, submitCallBack }) {
   }
 
   return (
-    <div className='container'>
-      {keys.map((row) => (
-        <div className='my-1 flex w-full justify-center gap-1' key={rowId++}>
-          {row.map((key) => (
-            <KeyboardButton
-              button={key}
-              key={keyId++}
-              onKeyPress={onKeyPress}
-            />
-          ))}
-        </div>
-      ))}
-    </div>
+    <>
+      <div className='container'>
+        {keys.map((row) => (
+          <div className='my-1 flex w-full justify-center gap-1' key={rowId++}>
+            {row.map((key) => (
+              <KeyboardButton
+                button={key}
+                key={keyId++}
+                onKeyPress={onKeyPress}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </>
   )
 }
 

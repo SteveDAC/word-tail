@@ -5,6 +5,7 @@ import Keyboard from '../components/keyboard/Keyboard'
 import { loadWords } from '../tools'
 import ErrorMessage from '../components/layout/ErrorMessage'
 import { TileStates } from '../components/game/Tile'
+import Spinner from '../components/Spinner'
 
 function Game() {
   const {
@@ -201,6 +202,8 @@ function Game() {
 
     loadSavedGameData()
   }, [dispatch])
+
+  if (loading) return <Spinner />
 
   return (
     <div className='container flex h-full flex-col align-bottom'>

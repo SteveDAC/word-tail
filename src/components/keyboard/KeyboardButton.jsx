@@ -32,20 +32,6 @@ function KeyboardButton({ button, onKeyPress }) {
     color =
       'bg-base-100 text-base-content hover:bg-base-100 hover:text-base-content'
   }
-  // let color = ''
-  // if (correctLetters.includes(buttonKey)) {
-  //   color =
-  //     'bg-tileStateCorrect text-white hover:bg-neutral hover:text-neutral-content'
-  // } else if (incorrectLetters.includes(buttonKey)) {
-  //   color =
-  //     'bg-tileStateIncorrect text-white hover:bg-neutral hover:text-neutral-content'
-  // } else if (misplacedLetters.includes(buttonKey)) {
-  //   color =
-  //     'bg-tileStateMisplaced text-white hover:bg-neutral hover:text-neutral-content'
-  // } else {
-  //   color =
-  //     'bg-base-100 text-base-content hover:bg-neutral hover:text-neutral-content'
-  // }
 
   return (
     <button className={`kbd btn ${color}`} onClick={onClick}>

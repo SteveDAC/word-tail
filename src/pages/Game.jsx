@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import GameContext from '../context/game/GameContext'
 import Board from '../components/game/Board'
 import Keyboard from '../components/keyboard/Keyboard'
@@ -100,7 +100,6 @@ function Game() {
     for (let i = 0; i < word.length; i++) {
       if (newRow[i].state === TileStates.Correct) continue
       if (newRow[i].state === TileStates.Misplaced) continue
-      
 
       newRow[i].state = TileStates.Incorrect
       if (!currentIncorrectLetters.includes(word[i])) {
@@ -116,6 +115,7 @@ function Game() {
       setErrorMessage(`Nope, the word was ${targetWord}!`)
     }
     if (word === targetWord) {
+      localStorage.removeItem('SavedGameData')
       dispatch({ type: 'SET_GAME_OVER', payload: true })
       setErrorMessage('You win!')
     }
@@ -125,8 +125,12 @@ function Game() {
       payload: currentBoard,
     })
 
-    currentIncorrectLetters = currentIncorrectLetters.filter((l) => !currentCorrectLetters.includes(l))
-    currentIncorrectLetters = currentIncorrectLetters.filter((l) => !currentMisplacedLetters.includes(l))
+    currentIncorrectLetters = currentIncorrectLetters.filter(
+      (l) => !currentCorrectLetters.includes(l)
+    )
+    currentIncorrectLetters = currentIncorrectLetters.filter(
+      (l) => !currentMisplacedLetters.includes(l)
+    )
 
     dispatch({
       type: 'SET_LETTERS',
@@ -134,8 +138,19 @@ function Game() {
         correctLetters: currentCorrectLetters,
         incorrectLetters: currentIncorrectLetters,
         misplacedLetters: currentMisplacedLetters,
-      }
+      },
     })
+
+    const saveData = {
+      currentBoard,
+      currentCorrectLetters,
+      currentIncorrectLetters,
+      currentMisplacedLetters,
+      targetWord,
+      rowId,
+    }
+
+    localStorage.setItem('SavedGameData', JSON.stringify(saveData))
 
     dispatch({ type: 'SET_NEXT_ROW', payload: rowId })
   }
@@ -155,6 +170,36 @@ function Game() {
       }, timeout)
     }
   }
+
+  useEffect(() => {
+    const loadSavedGameData = async () => {
+      const savedGameData = JSON.parse(localStorage.getItem('SavedGameData'))
+      if (savedGameData) {
+        const words = await loadWords()
+        dispatch({
+          type: 'SET_WORDS',
+          payload: words,
+        })
+
+        dispatch({ type: 'UPDATE_BOARD', payload: savedGameData.currentBoard })
+        dispatch({ type: 'SET_TARGET_WORD', payload: savedGameData.targetWord })
+        dispatch({
+          type: 'SET_LETTERS',
+          payload: {
+            correctLetters: savedGameData.currentCorrectLetters,
+            incorrectLetters: savedGameData.currentIncorrectLetters,
+            misplacedLetters: savedGameData.currentMisplacedLetters,
+          },
+        })
+        dispatch({ type: 'SET_NEXT_ROW', payload: savedGameData.rowId })
+        dispatch({ type: 'SET_GAME_OVER', payload: false })
+      }
+    }
+
+    loadSavedGameData()
+
+    // eslint-disable-next-line
+  }, [dispatch])
 
   return (
     <div className='container flex h-full flex-col align-bottom'>
@@ -179,7 +224,7 @@ function Game() {
       {gameOver && (
         <>
           <button
-            className='btn-primary btn mx-auto my-auto text-3xl'
+            className='btn-primary btn mx-auto my-auto text-3xl shadow-sm shadow-primary'
             onClick={initNewGame}
           >
             New Game

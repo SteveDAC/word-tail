@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {},
     colors: {
-      'tileStateCorrect': 'green',
+      'tileStateCorrect': 'forestgreen',
       'tileStateIncorrect': 'dimgray',
       'tileStateMisplaced': 'goldenrod',
       'tileStateNone': 'whitesmoke'

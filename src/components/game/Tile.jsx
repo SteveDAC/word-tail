@@ -29,7 +29,7 @@ function Tile({ letter, state }) {
 
   return (
       
-      <div className={`kbd kbd-lg ${color} p-1`} style={{color: (state === TileStates.None) ? '' : 'white'}}>
+      <div className={`kbd kbd-lg ${color} p-1`} style={{color: (state === TileStates.None) ? '' : 'white', width: '45px', height: '45px'}}>
         {letter !== '' ? letter : ' '}
       </div>
 

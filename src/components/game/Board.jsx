@@ -4,13 +4,12 @@ import Row from './Row'
 
 function Board() {
   const { board } = useContext(GameContext)
-
   let rowId = 0
 
   return (
     <>
-      <div className='outline-1 outline outline-base-300 rounded-lg mx-auto w-fit shadow-lg'>
-        <div className='div card-body w-fit'>
+      <div className='outline-1 outline outline-base-300 rounded-lg mx-auto w-fit shadow-lg card card-compact'>
+        <div className='div card-body'>
           {board.map((row) => (
             <div key={rowId}>
               <Row rowId={rowId++} />

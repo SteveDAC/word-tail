@@ -8,7 +8,7 @@ function Board() {
 
   return (
     <>
-      <div className='outline-1 outline outline-base-300 rounded-lg mx-auto w-fit shadow-lg card card-compact'>
+      <div className='outline-1 outline outline-base-300 rounded-lg mx-auto w-fit shadow-lg card-compact'>
         <div className='div card-body'>
           {board.map((row) => (
             <div key={rowId}>

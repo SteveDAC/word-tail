@@ -10,13 +10,15 @@ function Keyboard({ maxWordLength, updateCallBack, submitCallBack }) {
     ['Enter|{ENTER}', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'Delete|{DELETE}'],
   ]
 
-  const { buffer, dispatch } = useContext(GameContext)
+  const { buffer, gameOver, dispatch } = useContext(GameContext)
 
   let rowId = 0
   let keyId = 0
   let currentBuffer = buffer
 
   const onKeyPress = (button) => {
+    if (gameOver) return
+
     switch (button) {
       case '{ENTER}':
         submitCallBack(currentBuffer)

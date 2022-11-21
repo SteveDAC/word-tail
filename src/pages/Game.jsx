@@ -22,6 +22,44 @@ function Game() {
 
   const [loading, setLoading] = useState(true)
 
+  useEffect(() => {
+    const loadSavedGameData = async () => {
+      const savedGameData = JSON.parse(localStorage.getItem('SavedGameData'))
+      if (savedGameData) {
+        console.log('gameOver', savedGameData.gameOver)
+        if (!savedGameData.gameOver) {
+          const words = await loadWords()
+          dispatch({
+            type: 'SET_WORDS',
+            payload: words,
+          })
+
+          dispatch({
+            type: 'UPDATE_BOARD',
+            payload: savedGameData.currentBoard,
+          })
+          dispatch({
+            type: 'SET_TARGET_WORD',
+            payload: savedGameData.targetWord,
+          })
+          dispatch({
+            type: 'SET_LETTERS',
+            payload: {
+              correctLetters: savedGameData.currentCorrectLetters,
+              incorrectLetters: savedGameData.currentIncorrectLetters,
+              misplacedLetters: savedGameData.currentMisplacedLetters,
+            },
+          })
+          dispatch({ type: 'SET_NEXT_ROW', payload: savedGameData.rowId })
+          dispatch({ type: 'SET_GAME_OVER', payload: false })
+        }
+      }
+      setLoading(false)
+    }
+
+    loadSavedGameData()
+  }, [dispatch])
+
   const initNewGame = () => {
     dispatch({ type: 'INIT_NEW_GAME' })
 
@@ -116,6 +154,7 @@ function Game() {
 
     if (rowId > 5) {
       tmpGameOver = true
+      localStorage.removeItem('SavedGameData')
       dispatch({ type: 'SET_GAME_OVER', payload: tmpGameOver })
       setErrorMessage(`Nope, the word was ${targetWord}!`)
     }
@@ -180,35 +219,6 @@ function Game() {
       }, timeout)
     }
   }
-
-  useEffect(() => {
-    const loadSavedGameData = async () => {
-      const savedGameData = JSON.parse(localStorage.getItem('SavedGameData'))
-      if (savedGameData) {
-        const words = await loadWords()
-        dispatch({
-          type: 'SET_WORDS',
-          payload: words,
-        })
-
-        dispatch({ type: 'UPDATE_BOARD', payload: savedGameData.currentBoard })
-        dispatch({ type: 'SET_TARGET_WORD', payload: savedGameData.targetWord })
-        dispatch({
-          type: 'SET_LETTERS',
-          payload: {
-            correctLetters: savedGameData.currentCorrectLetters,
-            incorrectLetters: savedGameData.currentIncorrectLetters,
-            misplacedLetters: savedGameData.currentMisplacedLetters,
-          },
-        })
-        dispatch({ type: 'SET_NEXT_ROW', payload: savedGameData.rowId })
-        dispatch({ type: 'SET_GAME_OVER', payload: false })
-      }
-      setLoading(false)
-    }
-
-    loadSavedGameData()
-  }, [dispatch])
 
   if (loading) return <Spinner />
 

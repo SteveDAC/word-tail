@@ -2,13 +2,14 @@
 module.exports = {
   content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
-    colors: {
-      'tileStateCorrect': 'forestgreen',
-      'tileStateIncorrect': 'dimgray',
-      'tileStateMisplaced': 'goldenrod',
-      'tileStateNone': 'whitesmoke'
-    }
+    extend: {
+      colors: {
+        'tileStateCorrect': 'forestgreen',
+        'tileStateIncorrect': 'dimgray',
+        'tileStateMisplaced': 'goldenrod',
+        'tileStateNone': 'whitesmoke'
+      }
+    },
   },
   plugins: [require('daisyui')],
   daisyui: {

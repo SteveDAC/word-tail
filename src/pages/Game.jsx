@@ -228,7 +228,7 @@ function Game() {
         <>
           <ErrorMessage />
 
-          <div className='container mx-auto my-10'>
+          <div className='container my-10'>
             <Board />
           </div>
 

@@ -8,8 +8,8 @@ function Board() {
 
   return (
     <>
-      <div className='outline-1 outline outline-base-300 rounded-lg mx-auto w-fit shadow-lg card-compact'>
-        <div className='div card-body'>
+      <div className='flex flex-auto'>
+        <div className='mx-auto my-5 outline outline-1 outline-base-300 rounded-xl shadow-md p-10'>
           {board.map((row) => (
             <div key={rowId}>
               <Row rowId={rowId++} />

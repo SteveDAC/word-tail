@@ -3,7 +3,7 @@ A Wordle clone made with React, TailwindCSS and DaisyUI.
 
 <br/>
 <br/>
-
+<br/>
 
 ## Available Scripts
 
